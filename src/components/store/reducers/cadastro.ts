@@ -10,7 +10,8 @@ const initialState: CadastroSlice = {
         {
             id: 1,
             nome: 'Sarah',
-            telefone: '5165251585'
+            telefone: '5165251585',
+            email: 'sarah@email.com'
         }
     ]
 }

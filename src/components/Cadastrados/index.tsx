@@ -12,6 +12,7 @@ type Props = CadastradosClass
 const Cadastro = ({
     nome,
     telefone,
+    email,
     id
 }: Props) => {
     const dispatch = useDispatch()
@@ -39,6 +40,7 @@ const Cadastro = ({
                                 editar({
                                     nome,
                                     telefone,
+                                    email,
                                     id
                                 })
                             )
