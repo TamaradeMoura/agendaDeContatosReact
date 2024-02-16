@@ -22,16 +22,33 @@ const Cadastro = ({
         setEstaEditando(false)
     }
 
+    function SalvarEdição() {
+        if (estaEditando === true) {
+            dispatch(
+                editar({
+                    nome,
+                    telefone,
+                    email,
+                    id
+                })
+            )
+        }
+    }
+
     return (
         <>
             <S.Card>
                 <label htmlFor={nome}>
-                    <h3>{estaEditando && <em>Editando...</em>}
+                    <h3>{estaEditando ? <input type="text" onChange={SalvarEdição} /> : <h3>{nome}</h3>}
                     {nome}</h3>
                 </label>
                 <label htmlFor={telefone}>
-                    <h3>{estaEditando && <em>Editando...</em>}
+                    <h3>{estaEditando ? <input type="text" /> : <h3>{telefone}</h3>}
                     {telefone}</h3>
+                </label>
+                <label htmlFor={email}>
+                    <h3>{estaEditando ? <input type="text" /> : <h3>{email}</h3>}
+                    {email}</h3>
                 </label>
                 <div>
                     {estaEditando ? (

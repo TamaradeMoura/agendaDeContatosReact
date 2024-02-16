@@ -26,12 +26,12 @@ const CadastroSlice = createSlice({
             ]
         },
         editar: (state, action: PayloadAction<Cadastro>) => {
-            const indexDaTarefa = state.itens.findIndex(
+            const indexDoCadastro = state.itens.findIndex(
                 (c) => c.id === action.payload.id
             )
 
-            if (indexDaTarefa >=0) {
-                state.itens[indexDaTarefa] = action.payload
+            if (indexDoCadastro >=0) {
+                state.itens[indexDoCadastro] = action.payload
             }
         },
         cadastrar: (state, action: PayloadAction<Omit<Cadastro, 'id'>>) => {
