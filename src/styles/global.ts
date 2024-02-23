@@ -5,6 +5,7 @@ const EstiloGlobal = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
         padding: 0;
+        list-style: none;
     }
 
     body {

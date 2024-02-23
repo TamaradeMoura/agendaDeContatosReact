@@ -1,8 +1,8 @@
+import  store  from "./store" 
 import { Provider } from "react-redux"
-import Cadastro from "./components/Cadastrados"
 import Cadastrando from "./components/Cadastro"
+import ListadeCadastros from "./components/ListadeContatos"
 import EstiloGlobal from "./styles/global"
-import Store from "./components/store/reducers"
 
 
 
@@ -10,13 +10,11 @@ import Store from "./components/store/reducers"
 function App() {
 
   return (
-    <Provider store={
-      Store
-    }>
+    <Provider store={store}>
       <EstiloGlobal />
       <div className="container">
         <Cadastrando />
-        <Cadastro nome={""} telefone={""} id={0}/>
+        <ListadeCadastros/>
       </div>
     </Provider>
   )

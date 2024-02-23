@@ -1,55 +1,62 @@
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import CadastradosClass from '../../models/Cadastro'
-
-
 
 import * as S from './styles'
-import { useState } from 'react'
-import { editar, remover } from '../store/reducers/cadastro'
 
-type Props = CadastradosClass
+
+import { remover, editar } from '../../store/reducers/cadastros'
+import CadastroClass from '../../models/Cadastro'
+
+
+type Props = CadastroClass
 
 const Cadastro = ({
-    nome,
-    telefone,
-    email,
+    nome: nomeOriginal,
+    telefone: telefoneOriginal,
+    email: emailOriginal,
     id
 }: Props) => {
     const dispatch = useDispatch()
     const [estaEditando, setEstaEditando] = useState(false)
+    const [nome, setNome] = useState('')
+    const [telefone, setTelefone] = useState('')
+    const [email, setEmail] = useState('')
+
+    useEffect(() => {
+        if (nomeOriginal.length, telefoneOriginal.length, emailOriginal.length > 0) {
+            setNome(nomeOriginal)
+            setTelefone(telefoneOriginal)
+            setEmail(emailOriginal)
+        }
+    }, [nomeOriginal, telefoneOriginal, emailOriginal])
 
     function cancelarEdicao() {
         setEstaEditando(false)
+        setNome(nomeOriginal)
+        setTelefone(telefoneOriginal)
+        setEmail(emailOriginal)
     }
 
-    function SalvarEdição() {
-        if (estaEditando === true) {
-            dispatch(
-                editar({
-                    nome,
-                    telefone,
-                    email,
-                    id
-                })
-            )
-        }
-    }
+
 
     return (
         <>
             <S.Card>
-                <label htmlFor={nome}>
-                    <h3>{estaEditando ? <input type="text" onChange={SalvarEdição} /> : <h3>{nome}</h3>}
-                    {nome}</h3>
-                </label>
-                <label htmlFor={telefone}>
-                    <h3>{estaEditando ? <input type="text" /> : <h3>{telefone}</h3>}
-                    {telefone}</h3>
-                </label>
-                <label htmlFor={email}>
-                    <h3>{estaEditando ? <input type="text" /> : <h3>{email}</h3>}
-                    {email}</h3>
-                </label>
+                <S.Cad
+                disabled={!estaEditando}
+                value={nome}
+                onChange={(evento) => setNome(evento.target.value)}
+                />
+                <S.Cad
+                disabled={!estaEditando}
+                value={telefone}
+                onChange={(evento) => setTelefone(evento.target.value)}
+                />
+                <S.Cad
+                disabled={!estaEditando}
+                value={email}
+                onChange={(evento) => setEmail(evento.target.value)}
+                />
                 <div>
                     {estaEditando ? (
                         <><S.BotaoSalvar onClick={() => {
@@ -62,7 +69,7 @@ const Cadastro = ({
                                 })
                             )
                             setEstaEditando(false)
-                        } }
+                        }}
                         >Salvar</S.BotaoSalvar><S.BotaoCancelarRemover onClick={cancelarEdicao}>cancelar</S.BotaoCancelarRemover></>
                     ): (
                         <>
@@ -80,3 +87,4 @@ const Cadastro = ({
 
 
 export default Cadastro
+
